@@ -1,0 +1,93 @@
+@use '../../utils/variable' as *;
+@use '../../utils/mixin' as *;
+@use '../../utils/extend' as *;
+
+* {
+  letter-spacing: 0.5px;
+}
+
+#addToCard {
+  .cardFrame {
+    position: relative;
+    .card {
+      position: relative;
+      @include flexbox(center, stretch, wrap, 0.5rem, column);
+      padding: 1.5rem;
+      padding-bottom: 2.1rem;
+      // border: $border;
+      border-radius: $default-br;
+      box-shadow: 0 4px 8px #eceef6;
+      overflow: hidden;
+
+      &__detail {
+        @include flexbox(flex-start, stretch, wrap, 0.5rem, column);
+        &__head {
+          width: 100%;
+          @include flexbox(center, space-between, wrap);
+
+          &__size {
+            font-size: $fs-100;
+          }
+        }
+
+        &__body {
+          font-size: $fs-100;
+        }
+
+        &__foot {
+          margin-top: 10px;
+          width: 100%;
+          text-align: center;
+          &__price {
+            font-size: $fs-400;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+    .overlayHover {
+      &.deactive {
+        backdrop-filter: blur(0);
+        transform: translateX(-100%);
+      }
+      @include position(absolute, 0);
+      @include flexbox(flex-start, stretch, wrap, 0, column);
+      overflow: hidden;
+      backdrop-filter: blur(3px);
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      &__sizes {
+        width: 100%;
+        flex-direction: column;
+        li {
+          margin-top: 10px;
+          width: 100%;
+          label {
+            display: grid;
+            grid-template-columns: 11px 1fr;
+            gap: 0.5rem;
+
+            font-size: $fs-100;
+          }
+        }
+      }
+
+      &__basket {
+        margin-top: 2rem;
+      }
+    }
+    .shopBtn {
+      background-color: #fff;
+      @include position(absolute, $bottom: -1.5rem, $left: 50%);
+      transform: translateX(-50%) rotate(45deg);
+      padding: 0.5rem;
+      box-shadow: 4px 4px 8px #eceef6;
+
+      border-bottom-right-radius: $default-br;
+
+      button {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

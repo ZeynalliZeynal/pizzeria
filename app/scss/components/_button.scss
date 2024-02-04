@@ -1,0 +1,48 @@
+@use '../utils/variable' as *;
+@use '../utils/mixin' as *;
+@use '../utils/extend' as *;
+
+$transition: all 0.1s ease-in-out;
+.btnShop {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: $border;
+
+  transition: $transition;
+  span svg path {
+    fill: $orange !important;
+    transition: $transition;
+  }
+
+  &:hover {
+    border: 1px solid transparent;
+    background: $linearBg;
+
+    span svg path {
+      fill: white !important;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95) rotate(-45deg) !important;
+  }
+}
+
+.btnBasket {
+  background: $linearBg2;
+  color: white;
+  font-size: $fs-100;
+  width: 100%;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0;
+  transition: $transition;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
