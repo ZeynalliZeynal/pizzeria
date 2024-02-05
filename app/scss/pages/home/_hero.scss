@@ -27,7 +27,7 @@
       padding-bottom: 2.1rem;
       // border: $border;
       border-radius: $default-br;
-      box-shadow: 0 4px 8px #eceef6;
+      box-shadow: $box-shadow;
       &:hover {
         .card__img__frame {
           transform: rotate(45deg);
@@ -113,19 +113,178 @@
 
   .cartList {
     @include position(absolute, $right: 70px, $top: 70px);
+    z-index: 999;
+    font-family: $secondary-ff;
 
     &__button {
-      button.btnShop {
+      button {
         position: relative;
-        width: 70px !important;
-        height: 70px !important;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        box-shadow: $box-shadow;
+
+        &:active {
+          transform: scale(0.9);
+        }
+        i {
+          color: $orange;
+          font-size: 1.8rem;
+        }
 
         .cartCount {
-          @include position(absolute, $bottom: 50%, $right: 50%);
+          @include flexbox(center, center, wrap);
+          display: inline-flex;
+          @include position(absolute, $bottom: -6px, $right: -6px);
           color: #fff;
           border-radius: 50%;
-          z-index: -1;
+          background-color: $orange;
+          width: 1.5rem;
+          height: 1.5rem;
+          font-size: 12px;
         }
+        .tooltip {
+          @include position(absolute, $top: 50%, $left: -100%);
+
+          transform: translate(-50%, -50%);
+          font-weight: 700;
+          font-size: $fs-400;
+          padding: 0.2rem 1.5rem;
+          background-color: $charcoal;
+          border-radius: 6px;
+          color: #fff;
+          user-select: none;
+          pointer-events: none;
+
+          &::before {
+            @include before_after('', 25px, 25px);
+            @include position(absolute, $top: 50%, $right: -11px);
+            transform: translateY(-50%);
+            background-color: $charcoal;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 50% 46%);
+          }
+
+          visibility: hidden;
+          opacity: 0;
+
+          transition: var(--transition);
+          transition-delay: 0.5s;
+        }
+
+        &:hover {
+          .tooltip {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &__container {
+      @include position(absolute, $top: 150%, $right: 0);
+      padding: 1rem 1.3rem;
+      border: $border;
+      border-radius: $default-br;
+      width: 500px;
+      color: $deepPurple;
+      .head {
+        font-size: $fs-500;
+      }
+      .body {
+        gap: 1rem;
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .cartItem {
+          position: relative;
+          display: grid;
+          grid-template-columns: 70px 180px 1fr 1fr;
+          align-items: center;
+          gap: 10px;
+          padding-bottom: 10px;
+
+          &::after {
+            @include before_after('', calc(100% - 80px), 1px, #d7d7d7);
+            @include position(absolute, $bottom: 0, $right: 0);
+          }
+
+          &__desc {
+            font-size: $fs-200;
+          }
+          &__price {
+            font-size: $fs-300;
+            font-weight: 700;
+            sup {
+              font-size: $fs-200;
+            }
+          }
+          &__amount {
+            display: grid;
+            justify-content: center;
+            gap: 6px;
+
+            .incr,
+            .decr {
+              color: $coral;
+            }
+
+            .remove {
+              font-size: $fs-200;
+              font-weight: 600;
+
+              &:hover {
+                color: $coral;
+              }
+            }
+          }
+        }
+      }
+
+      .foot {
+        margin-top: 1.5rem;
+        @include flexbox(space-between, flex-start, wrap, 1rem, column);
+
+        &__total {
+          @include flexbox(center, space-between, wrap);
+          font-size: $fs-400;
+          font-weight: 500;
+          .totalPrice {
+            font-weight: 700;
+          }
+          sub,
+          sup {
+            font-size: $fs-200;
+          }
+        }
+        &__checkout {
+          display: flex;
+          gap: 1rem;
+          a {
+            width: 100%;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            background-color: $coral;
+            height: 60px;
+            align-items: center;
+            font-size: $fs-400;
+            border-radius: 14px;
+            transition: var(--transition);
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      visibility: hidden;
+      opacity: 0;
+
+      &.active {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
