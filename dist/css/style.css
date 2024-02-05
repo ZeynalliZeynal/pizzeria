@@ -492,16 +492,16 @@ h1 {
   border: 2px solid #eceef6;
   transition: all 0.1s ease-in-out;
 }
-.btnShop span svg path {
-  fill: rgb(245, 134, 86) !important;
+.btnShop i {
+  color: rgb(245, 134, 86) !important;
   transition: all 0.1s ease-in-out;
 }
 .btnShop:hover {
   border: 1px solid transparent;
   background: linear-gradient(0deg, rgb(245, 134, 86) 0%, rgb(254, 86, 38) 100%);
 }
-.btnShop:hover span svg path {
-  fill: white !important;
+.btnShop:hover i {
+  color: white !important;
 }
 .btnShop:active {
   transform: scale(0.95) rotate(-45deg) !important;
@@ -529,6 +529,7 @@ h1 {
 
 #addToCard {
   --transition: all 0.6s ease;
+  position: relative;
 }
 #addToCard h1 {
   margin-bottom: 1.5rem;
@@ -538,6 +539,8 @@ h1 {
 }
 #addToCard .cardFrame {
   position: relative;
+  overflow: hidden;
+  padding-bottom: 2rem;
 }
 #addToCard .cardFrame .card {
   position: relative;
@@ -551,7 +554,6 @@ h1 {
   padding-bottom: 2.1rem;
   border-radius: 1.3rem;
   box-shadow: 0 4px 8px #eceef6;
-  overflow: hidden;
 }
 #addToCard .cardFrame .card:hover .card__img__frame {
   transform: rotate(45deg);
@@ -589,7 +591,7 @@ h1 {
   font-size: 24px;
   font-weight: 300;
 }
-#addToCard .cardFrame .overlayHover {
+#addToCard .cardFrame .card .overlayHover {
   position: absolute;
   inset: 0;
   display: flex;
@@ -603,28 +605,28 @@ h1 {
   padding: 1.5rem;
   background-color: rgba(255, 255, 255, 0.5);
 }
-#addToCard .cardFrame .overlayHover.deactive {
+#addToCard .cardFrame .card .overlayHover.deactive {
   backdrop-filter: blur(0);
   transform: translateX(-100%);
 }
-#addToCard .cardFrame .overlayHover__sizes {
+#addToCard .cardFrame .card .overlayHover__sizes {
   width: 100%;
   flex-direction: column;
 }
-#addToCard .cardFrame .overlayHover__sizes li {
+#addToCard .cardFrame .card .overlayHover__sizes li {
   margin-top: 10px;
   width: 100%;
 }
-#addToCard .cardFrame .overlayHover__sizes li label {
+#addToCard .cardFrame .card .overlayHover__sizes li label {
   display: grid;
   grid-template-columns: 11px 1fr;
   gap: 0.5rem;
   font-size: 12px;
 }
-#addToCard .cardFrame .overlayHover__basket {
+#addToCard .cardFrame .card .overlayHover__basket {
   margin-top: 2rem;
 }
-#addToCard .cardFrame .shopBtn {
+#addToCard .cardFrame .card .shopBtn {
   background-color: #fff;
   position: absolute;
   left: 50%;
@@ -634,8 +636,26 @@ h1 {
   box-shadow: 4px 4px 8px #eceef6;
   border-bottom-right-radius: 1.3rem;
 }
-#addToCard .cardFrame .shopBtn button {
+#addToCard .cardFrame .card .shopBtn button {
   transform: rotate(-45deg);
+}
+#addToCard .cartList {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+}
+#addToCard .cartList__button button.btnShop {
+  position: relative;
+  width: 70px !important;
+  height: 70px !important;
+}
+#addToCard .cartList__button button.btnShop .cartCount {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  color: #fff;
+  border-radius: 50%;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=style.css.map */

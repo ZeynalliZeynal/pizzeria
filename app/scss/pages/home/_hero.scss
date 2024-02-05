@@ -8,6 +8,7 @@
 
 #addToCard {
   --transition: all 0.6s ease;
+  position: relative;
   h1 {
     margin-bottom: 1.5rem;
   }
@@ -17,6 +18,8 @@
   }
   .cardFrame {
     position: relative;
+    overflow: hidden;
+    padding-bottom: 2rem;
     .card {
       position: relative;
       @include flexbox(center, stretch, wrap, 0.5rem, column);
@@ -25,7 +28,6 @@
       // border: $border;
       border-radius: $default-br;
       box-shadow: 0 4px 8px #eceef6;
-      overflow: hidden;
       &:hover {
         .card__img__frame {
           transform: rotate(45deg);
@@ -37,7 +39,6 @@
           transition: var(--transition);
         }
       }
-
       &__detail {
         @include flexbox(flex-start, stretch, wrap, 0.5rem, column);
         &__head {
@@ -63,49 +64,68 @@
           }
         }
       }
-    }
-    .overlayHover {
-      &.deactive {
-        backdrop-filter: blur(0);
-        transform: translateX(-100%);
-      }
-      @include position(absolute, 0);
-      @include flexbox(flex-start, stretch, wrap, 0, column);
-      overflow: hidden;
-      backdrop-filter: blur(3px);
-      padding: 1.5rem;
-      background-color: rgba(255, 255, 255, 0.5);
-      &__sizes {
-        width: 100%;
-        flex-direction: column;
-        li {
-          margin-top: 10px;
+      .overlayHover {
+        &.deactive {
+          backdrop-filter: blur(0);
+          transform: translateX(-100%);
+        }
+        @include position(absolute, 0);
+        @include flexbox(flex-start, stretch, wrap, 0, column);
+        overflow: hidden;
+        backdrop-filter: blur(3px);
+        padding: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.5);
+        &__sizes {
           width: 100%;
-          label {
-            display: grid;
-            grid-template-columns: 11px 1fr;
-            gap: 0.5rem;
+          flex-direction: column;
+          li {
+            margin-top: 10px;
+            width: 100%;
+            label {
+              display: grid;
+              grid-template-columns: 11px 1fr;
+              gap: 0.5rem;
 
-            font-size: $fs-100;
+              font-size: $fs-100;
+            }
           }
         }
-      }
 
-      &__basket {
-        margin-top: 2rem;
+        &__basket {
+          margin-top: 2rem;
+        }
+      }
+      .shopBtn {
+        background-color: #fff;
+        @include position(absolute, $bottom: -1.5rem, $left: 50%);
+        transform: translateX(-50%) rotate(45deg);
+        padding: 0.5rem;
+        box-shadow: 4px 4px 8px #eceef6;
+
+        border-bottom-right-radius: $default-br;
+
+        button {
+          transform: rotate(-45deg);
+        }
       }
     }
-    .shopBtn {
-      background-color: #fff;
-      @include position(absolute, $bottom: -1.5rem, $left: 50%);
-      transform: translateX(-50%) rotate(45deg);
-      padding: 0.5rem;
-      box-shadow: 4px 4px 8px #eceef6;
+  }
 
-      border-bottom-right-radius: $default-br;
+  .cartList {
+    @include position(absolute, $right: 70px, $top: 70px);
 
-      button {
-        transform: rotate(-45deg);
+    &__button {
+      button.btnShop {
+        position: relative;
+        width: 70px !important;
+        height: 70px !important;
+
+        .cartCount {
+          @include position(absolute, $bottom: 50%, $right: 50%);
+          color: #fff;
+          border-radius: 50%;
+          z-index: -1;
+        }
       }
     }
   }
