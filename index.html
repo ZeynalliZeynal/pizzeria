@@ -89,76 +89,43 @@
           <div class="row justify-center">
             <h1>Popular pizzas</h1>
           </div>
-          <div class="row products">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="cardFrame">
-                <div class="card">
-                  <div class="card__img">
-                    <span class="card__img__frame br-circle">
-                      <img
-                        src="./app/assets/icon/pizzaExample.svg"
-                        alt="${name}"
-                      />
-                    </span>
-                  </div>
-                  <div class="card__detail">
-                    <div class="card__detail__head">
-                      <h3 class="card__detail__head__title">${name}</h3>
-                      <span class="card__detail__head__rating">${rate}/5</span>
-                    </div>
-                    <div class="card__detail__body">
-                      <div class="card__detail__body__desc">
-                        <p>${dsc}</p>
-                      </div>
-                    </div>
-                    <div class="card__detail__foot">
-                      <span class="card__detail__foot__price">$${price}</span>
-                    </div>
-                  </div>
-                  <div class="overlayHover deactive" data-id="1">
-                    <div class="overlayHover__title">
-                      <h3>Sizes 1:</h3>
-                    </div>
-                    <ul class="overlayHover__sizes">
-                      <li>
-                        <label for="size-1">
-                          <input type="checkbox" id="size-1" /><span>
-                            small - 20cm</span
-                          >
-                        </label>
-                      </li>
-                      <li>
-                        <label for="size-2">
-                          <input type="checkbox" id="size-2" /><span>
-                            medium - 25cm</span
-                          >
-                        </label>
-                      </li>
-                      <li>
-                        <label for="size-3">
-                          <input type="checkbox" id="size-3" /><span>
-                            big - 32cm</span
-                          >
-                        </label>
-                      </li>
-                    </ul>
-                    <div class="overlayHover__basket w-100">
-                      <button class="btnBasket">
-                        <span>Add to basket</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="shopBtn">
-                    <button class="btnShop">
-                      <span><i class="bi bi-bag"></i></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="row products align-items-stretch"></div>
         </div>
       </section>
     </main>
   </body>
 </html>
+
+<!-- <div class="overlayHover deactive" data-id="1">
+      <div class="overlayHover__title">
+        <h3>Sizes 1:</h3>
+      </div>
+      <ul class="overlayHover__sizes">
+        <li>
+          <label for="size-1">
+            <input type="checkbox" id="size-1" /><span>
+              small - 20cm</span
+            >
+          </label>
+        </li>
+        <li>
+          <label for="size-2">
+            <input type="checkbox" id="size-2" /><span>
+              medium - 25cm</span
+            >
+          </label>
+        </li>
+        <li>
+          <label for="size-3">
+            <input type="checkbox" id="size-3" /><span>
+              big - 32cm</span
+            >
+          </label>
+        </li>
+      </ul>
+      <div class="overlayHover__basket w-100">
+        <button class="btnBasket">
+          <span>Add to basket</span>
+        </button>
+      </div>
+    </div> -->

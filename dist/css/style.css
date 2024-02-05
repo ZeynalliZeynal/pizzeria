@@ -535,7 +535,7 @@ h1 {
 #addToCard h1 {
   margin-bottom: 1.5rem;
 }
-#addToCard [data-cards] {
+#addToCard .products {
   row-gap: 2.5rem;
 }
 #addToCard .cardFrame {
@@ -553,6 +553,7 @@ h1 {
   flex-direction: column;
   padding: 1.5rem;
   padding-bottom: 2.1rem;
+  border: 2px solid #eceef6;
   border-radius: 1.3rem;
   box-shadow: 0 4px 8px #eceef6;
 }
