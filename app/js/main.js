@@ -11,6 +11,9 @@ const productsDOM = document.querySelector('.products');
 // cart
 let cart = [];
 
+// buttons
+let buttonsDOM = [];
+
 // * Classes
 // get products
 class Products {
@@ -58,8 +61,8 @@ class UI {
                 </div>
               </div>
               <div class="shopBtn">
-                <button class="btnShop">
-                  <span><i class="bi bi-bag"></i></span>
+                <button class="btnShop" data-id=${id}>
+                  <i class="bi bi-bag-plus"></i>
                 </button>
               </div>
             </div>
@@ -70,14 +73,51 @@ class UI {
       productsDOM.insertAdjacentHTML('afterbegin', html);
     });
   }
+  getBagButtons() {
+    const buttons = [...document.querySelectorAll('.btnShop')];
+    buttonsDOM = buttons;
+    buttons.forEach((button) => {
+      let id = button.dataset.id;
+      let inCart = cart.find((item) => item.id === id);
+      if (inCart) {
+        if (button.classList.contains('btnShop')) {
+          button.innerHTML = '<i class="bi bi-check-lg"></i>';
+          button.disabled = true;
+        }
+      }
+      button.addEventListener('click', (e) => {
+        e.target.innerHTML = '<i class="bi bi-check-lg"></i>';
+        e.target.disabled = true;
+
+        // same object with a new property called 'amount'
+        let cartItem = { ...Storage.getProduct(id), amount: 1 };
+        cart = [...cart, cartItem];
+        console.log(cart);
+      });
+    });
+  }
 }
 
 // set storage
-class Storage {}
+class Storage {
+  static saveProduct(products) {
+    localStorage.setItem('products', JSON.stringify(products));
+  }
+  static getProduct(id) {
+    let products = JSON.parse(localStorage.getItem('products'));
+    return products.find((product) => product.id === id);
+  }
+}
 
 // main code
 const ui = new UI();
 const products = new Products();
-products.getProducts().then((products) => {
-  ui.displayProducts(products);
-});
+products
+  .getProducts()
+  .then((products) => {
+    ui.displayProducts(products);
+    Storage.saveProduct(products);
+  })
+  .then(() => {
+    ui.getBagButtons();
+  });
