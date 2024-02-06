@@ -9,6 +9,8 @@
 #addToCard {
   --transition: all 0.6s ease;
   position: relative;
+
+  @include bg-img(cover, no-repeat, $attachment: fixed);
   h1 {
     margin-bottom: 1.5rem;
   }
@@ -21,6 +23,7 @@
     overflow: hidden;
     padding-bottom: 2rem;
     .card {
+      background-color: #fff;
       position: relative;
       @include flexbox(center, stretch, wrap, 0.5rem, column);
       padding: 1.5rem;
