@@ -810,7 +810,7 @@ h1 {
   display: flex;
   gap: 1rem;
 }
-#addToCard .cartList__container .foot__checkout a {
+#addToCard .cartList__container .foot__checkout button {
   width: 100%;
   justify-content: center;
   color: #fff;
@@ -822,7 +822,7 @@ h1 {
   border-radius: 14px;
   transition: var(--transition);
 }
-#addToCard .cartList__container .foot__checkout a:hover {
+#addToCard .cartList__container .foot__checkout button:hover {
   opacity: 0.8;
 }
 #addToCard .cartList__container.active {

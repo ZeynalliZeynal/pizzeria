@@ -29,7 +29,6 @@ class Products {
     }
   }
 }
-
 // display products
 class UI {
   displayProducts(products) {
@@ -147,19 +146,87 @@ class UI {
                 </div>
               </li>`;
     document.querySelector('.body').insertAdjacentHTML('afterbegin', html);
-    console.log(cartContent);
   }
   showCart() {
+    cartDOM.classList.add('active');
+  }
+  hideCart() {
+    cartDOM.classList.remove('active');
+  }
+  toggleCart() {
     cartDOM.classList.toggle('active');
   }
   setupAPP() {
     cart = Storage.getCart();
     this.setCartValues(cart);
     this.populate(cart);
-    cartBtn.addEventListener('click', this.showCart);
+    cartBtn.addEventListener('click', this.toggleCart);
   }
   populate(cart) {
     cart.forEach((item) => this.addCartItem(item));
+  }
+  cartLogic() {
+    clearCartBtn.addEventListener('click', () => {
+      this.clearCart(); // * to point to class, otherwise it will point to the button
+    });
+    cartContent.addEventListener('click', (e) => {
+      let el = e.target.classList;
+      if (el.contains('remove')) {
+        let removeItem = e.target;
+        let id = removeItem.dataset.id;
+        cartContent.removeChild(removeItem.closest('.cartItem'));
+        this.removeItem(id);
+      } else if (el.contains('incr') || el.contains('bi-caret-up-fill')) {
+        let addAmount = e.target;
+        if (el.contains('bi-caret-up-fill'))
+          addAmount = addAmount.parentElement;
+        let id = addAmount.dataset.id;
+        let tempItem = cart.find((item) => item.id === id);
+        tempItem.amount += 1;
+        Storage.saveCart(cart);
+        this.setCartValues(cart);
+        addAmount.parentElement.previousElementSibling.firstElementChild.textContent =
+          tempItem.amount;
+      } else if (el.contains('decr') || el.contains('bi-caret-down-fill')) {
+        let lowerAmount = e.target;
+        if (el.contains('bi-caret-down-fill'))
+          lowerAmount = lowerAmount.parentElement;
+        let id = lowerAmount.dataset.id;
+        let tempItem = cart.find((item) => item.id === id);
+        tempItem.amount -= 1;
+        if (tempItem.amount > 0) {
+          Storage.saveCart(cart);
+          this.setCartValues(cart);
+          lowerAmount.parentElement.previousElementSibling.firstElementChild.textContent =
+            tempItem.amount;
+        } else {
+          cartContent.removeChild(lowerAmount.parentElement.parentElement);
+          this.removeItem(id);
+        }
+      }
+    });
+  }
+  clearCart() {
+    let cartItems = cart.map((item) => item.id);
+    cartItems.forEach((id) => this.removeItem(id));
+
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+    this.hideCart(cart);
+  }
+  removeItem(id) {
+    cart = cart.filter((item) => item.id !== id);
+    this.setCartValues(cart);
+    Storage.saveCart(cart);
+    let button = this.getSingleButton(id);
+
+    button[0].classList.remove('active');
+    button[0].innerHTML = '<i class="bi bi-bag-plus"></i>';
+    button[0].disabled = false;
+  }
+  getSingleButton(id) {
+    return buttonsDOM.filter((button) => button.dataset.id === id);
   }
 }
 
@@ -195,4 +262,5 @@ products
   })
   .then(() => {
     ui.getBagButtons();
+    ui.cartLogic();
   });
