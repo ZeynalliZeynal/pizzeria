@@ -86,8 +86,12 @@ class UI {
         }
       }
       button.addEventListener('click', (e) => {
-        e.target.innerHTML = '<i class="bi bi-check-lg"></i>';
-        e.target.disabled = true;
+        let btn = e.target;
+        if (btn !== button) {
+          btn = e.target.closest('.btnShop');
+        }
+        btn.innerHTML = '<i class="bi bi-check-lg"></i>';
+        btn.disabled = true;
 
         // same object with a new property called 'amount'
         let cartItem = { ...Storage.getProduct(id), amount: 1 };
