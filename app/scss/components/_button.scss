@@ -26,6 +26,12 @@ $transition: all 0.1s ease-in-out;
   &:active {
     transform: scale(0.95) rotate(-45deg) !important;
   }
+  &.active {
+    background: $linearBg;
+    i {
+      color: #fff !important;
+    }
+  }
 }
 
 .btnBasket {

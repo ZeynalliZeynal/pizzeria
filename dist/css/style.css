@@ -507,6 +507,12 @@ h1 {
 .btnShop:active {
   transform: scale(0.95) rotate(-45deg) !important;
 }
+.btnShop.active {
+  background: linear-gradient(0deg, rgb(245, 134, 86) 0%, rgb(254, 86, 38) 100%);
+}
+.btnShop.active i {
+  color: #fff !important;
+}
 
 .btnBasket {
   background: linear-gradient(0deg, rgb(254, 51, 38) 0%, rgb(254, 86, 38) 100%);
@@ -720,6 +726,7 @@ h1 {
   border-radius: 1.3rem;
   width: 500px;
   color: #231e36;
+  background-color: #fff;
   visibility: hidden;
   opacity: 0;
 }
